@@ -69,7 +69,7 @@ This ETL needs to be run in each month.
 We can use the following diagram for automate this process:
 
 ## Automation
-![Automation](./architect.png)
+![Automation](./step_function.png)
 
 AWS Event Bridge Rule triggers AWS Step Function on every month and passes the date as input to it. Step Function first runs ETL process and then run a Crawler to create the Athena DB.
 
