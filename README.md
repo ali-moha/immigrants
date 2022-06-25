@@ -51,32 +51,32 @@ dwh.cfg: Configuration file for accessing resources and S3 input and ouput locat
 
 # Running Project
 ## Setup
-    Requirements:
-    - Python 3
-    - Pyspark
-    - pip
+Requirements:
+- Python 3
+- Pyspark
+- pip
 ## Run
-    You can run this project in local with just running etl.py file.
-    When you want to run this project in AWS, you should change the configuration locations in dwh.cfg file to S3 support format.
+You can run this project in local with just running etl.py file.
+When you want to run this project in AWS, you should change the configuration locations in dwh.cfg file to S3 support format.
 
 # Project write-up
 
 ## Tools
-    In this project we have used Python and Spark for our programming. Using Spark makes us be able to scale up our project without any major problems in the future.
+In this project we have used Python and Spark for our programming. Using Spark makes us be able to scale up our project without any major problems in the future.
 
 ## How often ETL script should be run:
-    This ETL needs to be run in each month.
-    We can use the following diagram for automate this process:
+This ETL needs to be run in each month.
+We can use the following diagram for automate this process:
 
 ## Automation
-    ![Automation](./architect.png)
+![Automation](./architect.png)
 
-    AWS Event Bridge Rule triggers AWS Step Function on every month and passes the date as input to it. Step Function first runs ETL process and then run a Crawler to create the Athena DB.
+AWS Event Bridge Rule triggers AWS Step Function on every month and passes the date as input to it. Step Function first runs ETL process and then run a Crawler to create the Athena DB.
 
 
 ## Scenarios:
-    - If the data was increased by 100x:
-        Because we are using AWS S3 as our storage, and also we have partioned the fact_data table based on year and month, The applicarion would be able to work without problem.
-    - If the pipelines were run on a daily basis by 7am:
-        We just need to set-up a cron-job to trigger our spark job every day at 7am.
+- If the data was increased by 100x:
+    Because we are using AWS S3 as our storage, and also we have partioned the fact_data table based on year and month, The applicarion would be able to work without problem.
+- If the pipelines were run on a daily basis by 7am:
+    We just need to set-up a cron-job to trigger our spark job every day at 7am.
         
